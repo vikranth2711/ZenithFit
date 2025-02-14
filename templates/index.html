@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Zenith Fit</h1>
+            <p>Your ultimate destination for fitness success!</p>
+            <p>We're dedicated to helping you reach your fitness goals with personalized workout plans, expert guidance, and a supportive community. Whether you're a beginner or an experienced gym-goer, Zenith Fit has everything you need to succeed. Join us today and start your journey to a healthier, stronger you!</p>
+            {% if 'email' in session %}
+            <a href="{{ url_for('profile') }}" class="btn btn-primary">Go to Profile</a>
+            {% else %}
+            <a href="{{ url_for('register') }}" class="btn btn-primary">Join Now</a>
+            {% endif %}
+        </div>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='images/hero-image.jpg') }}" alt="Hero Image">
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Our Features</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <i class="fas fa-dumbbell fa-3x"></i>
+                <h3>Personalized Workout Plans</h3>
+                <p>Get customized workout plans tailored to your fitness level and goals.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-user-check fa-3x"></i>
+                <h3>Expert Guidance</h3>
+                <p>Our certified trainers will guide you every step of the way.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-users fa-3x"></i>
+                <h3>Supportive Community</h3>
+                <p>Join our community of like-minded individuals and motivate each other.</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

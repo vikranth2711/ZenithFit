@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Trainers{% endblock %}
+
+{% block content %}
+    <section class="trainers">
+        <h1>Our Trainers</h1>
+        <div class="trainers-container">
+            {% for trainer in trainers %}
+            <div class="trainer-card">
+                <h3>{{ trainer.name }}</h3>
+                <p>Gender: {{ trainer.gender }}</p>
+                <p>Experience: {{ trainer.experience }} years</p>
+                <p>Specialization: {{ trainer.specialization }}</p>
+                <p>Fee: ${{ trainer.fee }} per session</p>
+                <form action="{{ url_for('select_trainer') }}" method="post">
+                    <input type="hidden" name="trainer_id" value="{{ trainer.trainer_id }}">
+                    <input type="hidden" name="trainer_fee" value="{{ trainer.fee }}">
+                    <button type="submit" class="btn btn-primary">Select Trainer</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

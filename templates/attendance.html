@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance{% endblock %}
+
+{% block content %}
+    <section class="attendance">
+        <h1>My Attendance</h1>
+        <table>
+            <tr>
+                <th>Class ID</th>
+                <th>Attendance Date</th>
+            </tr>
+            {% for record in attendance_records %}
+            <tr>
+                <td>{{ record.class_id }}</td>
+                <td>{{ record.attendance_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h2>Record Attendance</h2>
+        <form action="{{ url_for('record_attendance') }}" method="post">
+            <div class="form-group">
+                <label for="class_id">Class ID:</label>
+                <input type="text" id="class_id" name="class_id" required>
+            </div>
+            <div class="form-group">
+                <label for="attendance_date">Attendance Date:</label>
+                <input type="date" id="attendance_date" name="attendance_date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Record Attendance</button>
+        </form>
+    </section>
+{% endblock %}

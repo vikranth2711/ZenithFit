@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <section class="profile">
+        <h1>My Profile</h1>
+        <div class="profile-info">
+            <p>Name: {{ user.name }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Start Date: {{ user.startDate }}</p>
+            <p>Payment Status: {{ payment_status }}</p>
+            <p>Attendance Count: {{ attendance_count }}</p>
+        </div>
+        <div class="profile-actions">
+            <a href="{{ url_for('exercises') }}" class="btn btn-primary">Exercises</a>
+            <a href="{{ url_for('meal_plans') }}" class="btn btn-primary">Meal Plans</a>
+            <a href="{{ url_for('workout_plans') }}" class="btn btn-primary">Workout Plans</a>
+            <a href="{{ url_for('trainers') }}" class="btn btn-primary">Trainers</a>
+            <a href="{{ url_for('payments') }}" class="btn btn-primary">Payments</a>
+            <a href="{{ url_for('attendance') }}" class="btn btn-primary">Attendance</a>
+        </div>
+    </section>
+{% endblock %}

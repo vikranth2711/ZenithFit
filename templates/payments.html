@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Payments{% endblock %}
+
+{% block content %}
+    <section class="payments">
+        <h1>My Payments</h1>
+        <table>
+            <tr>
+                <th>Payment ID</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
+            </tr>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.payment_id }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.payment_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h2>Make Payment</h2>
+        {% if selected_trainer %}
+        <p>Selected Trainer: {{ selected_trainer[1] }} (Fee: ${{ selected_trainer[6] }} per session)</p>
+        {% endif %}
+        <form action="{{ url_for('process_payment') }}" method="post">
+            <div class="form-group">
+                <label for="membership">Membership Type:</label>
+                <select id="membership" name="membership" required>
+                    <option value="basic">Basic ($50)</option>
+                    <option value="premium">Premium ($100)</option>
+                    <option value="elite">Elite ($150)</option>
+                </select>
+            </div>
+            {% if selected_trainer %}
+            <input type="hidden" name="trainer_fee" value="{{ selected_trainer[6] }}">
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Make Payment</button>
+        </form>
+    </section>
+{% endblock %}
